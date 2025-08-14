@@ -1,3 +1,41 @@
-.container{
+.fundo{
+    position: relative;
     display: flex;
+    columns: 100px 100px 100px;
+    justify-content:center;
+    background-color:blue;
+    width: 300px;
+    height: 500px;
+    align-items:first baseline;
+    
 } 
+.tela{
+    position:absolute;
+    top:50px;
+    display: flex;
+    columns: 200px;
+    justify-content: first baseline;
+    background-color: red;
+    width: 250px;
+    height: 70px;
+    align-items: baseline;
+}
+
+.botoes{
+    position: absolute;
+    top:130px;
+    left:25px;
+    display: flex;
+    columns: auto;
+    justify-content:center;
+    gap: 10px;
+}
+    
+button{
+    cursor: pointer;
+    width: 55px;
+    background-color: yellow;
+    border:none;
+    font-size: 30px;
+}
+
