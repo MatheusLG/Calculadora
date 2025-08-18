@@ -4,36 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='./css.css' rel='stylesheet'>
-    <script> src="main.js" </script>
     <title>Calculadora MLG</title>
 </head>
 <body>
     <div class="fundo">
         <div class="tela">
-            <div> tela teste</div>
+            <input type="text" id="display" disabled>
         </div>
         <div class="botoes">
-            <button type="button">CE</button>
-            <button type="button">C</button>
-            <button type="button">%</button>
-            <button type="button">÷</button>
-            <button type="button">7</button>
-            <button type="button">8</button>
-            <button type="button">9</button>
-            <button type="button">x</button>
-            <button type="button">4</button>
-            <button type="button">5</button>
-            <button type="button">6</button>
-            <button type="button">-</button>
-            <button type="button">1</button>
-            <button type="button">2</button>
-            <button type="button">3</button>
-            <button type="button">+</button>
-            <button type="button">+/-</button>
-            <button type="button">0</button>
-            <button type="button">,</button>
-            <button type="button">=</button>    
+            <button id="CE" onclick="cleanAll()" type="button">CE</button>
+            <button id="C" onclick="clean1carac()" type="button">C</button>
+            <button id="%" type="button">%</button>
+            <button id="div" type="button">÷</button>
+            <button data-valor="7" type="button">7</button>
+            <button data-valor="8" type="button">8</button>
+            <button data-valor="9" type="button">9</button>
+            <button id="multi" type="button">x</button>
+            <button data-valor="4" type="button">4</button>
+            <button data-valor="5" type="button">5</button>
+            <button data-valor="6" type="button">6</button>
+            <button id="sub" type="button">-</button>
+            <button data-valor="1" type="button">1</button>
+            <button data-valor="2" type="button">2</button>
+            <button data-valor="3" type="button">3</button>
+            <button id="mais" type="button">+</button>
+            <button id="sinal" type="button">+/-</button>
+            <button data-valor="0" type="button">0</button>
+            <button id="virgula" type="button">,</button>
+            <button id="result" type="button">=</button>    
         </div> 
     </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
