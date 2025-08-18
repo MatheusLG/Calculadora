@@ -3,18 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='./css.css' rel='stylesheet'>
+    <link href='./styles.css' rel='stylesheet'>
     <title>Calculadora MLG</title>
 </head>
 <body>
     <div class="fundo">
+        <div class="telaHistorico">
+            <input type="text" id="historico" disabled>
+        </div>
         <div class="tela">
             <input type="text" id="display" disabled>
         </div>
         <div class="botoes">
             <button id="CE" onclick="cleanAll()" type="button">CE</button>
             <button id="C" onclick="clean1carac()" type="button">C</button>
-            <button id="%" type="button">%</button>
+            <button id="porcent" type="button">%</button>
             <button id="div" type="button">÷</button>
             <button data-valor="7" type="button">7</button>
             <button data-valor="8" type="button">8</button>
@@ -28,13 +31,13 @@
             <button data-valor="2" type="button">2</button>
             <button data-valor="3" type="button">3</button>
             <button id="mais" type="button">+</button>
-            <button id="sinal" type="button">+/-</button>
+            <button id="sinal" onclick="inverteSinal()" type="button">+/-</button>
             <button data-valor="0" type="button">0</button>
-            <button id="virgula" type="button">,</button>
+            <button id="ponto" onclick="ponto()" type="button">.</button>
             <button id="result" type="button">=</button>    
         </div> 
     </div>
 
-    <script src="main.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

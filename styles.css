@@ -6,16 +6,31 @@
     height: 400px;
     border-radius: 10px;
 } 
+.telaHistorico input{
+    width: 240px;
+    height: 30px;
+    font-size: 15px;
+    text-align: right;
+}
+
+.telaHistorico{
+    display:grid;
+    position:absolute;
+    top: 30px;
+    left:25px;
+}
 .tela{
     display: grid;
     position:absolute;
-    top:50px;
+    top:64px;
     left:25px;
-    background-color: red;
-    width: 250px;
-    height: 70px;
-    font-size: 40px;
 } 
+.tela input {
+    width: 240px;
+    height: 30px;
+    font-size: 20px;
+    text-align: right;
+}
 
 .botoes{
     display: grid;
@@ -34,6 +49,7 @@ button{
     font-size: 25px;
 }
 
+/*muda a cor do "=" */
 .botoes button:nth-child(20) {
     background-color:azure;
 }
