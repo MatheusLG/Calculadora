@@ -1,7 +1,6 @@
 const historico = document.querySelector("#historico");
-let valorAnt="";
-let operador="";
-
+let valorAnt = "";
+let operador = "";
 // Seletor de 0 a 9
 document.querySelector(".botoes").addEventListener("click", (event) => {
     const botao = event.target;
@@ -9,93 +8,79 @@ document.querySelector(".botoes").addEventListener("click", (event) => {
         display.value += botao.getAttribute("data-valor");
     }
 });
-
-//Limpar tudo, inclusive valores anteriores
-function cleanAll(){
-    display.value="";
-    valorAnt="";
-    operador="";
-    historico.value= "";
-}
-//limpa somente 1 caracter
-function clean1carac(){
+// Limpar tudo
+document.querySelector("#CE").addEventListener("click", () => {
+    display.value = "";
+    valorAnt = "";
+    operador = "";
+    historico.value = "";
+});
+// Limpar o ultimo caracter
+document.querySelector("#C").addEventListener("click", () => {
     display.value = display.value.slice(0, -1);
-}
-/*Seletor que armazena o tipo multiplicacao quando tem click,
-armazenando valor anterior, o tipo do operador e limpando a tela
-*/
-document.querySelector("#multi").addEventListener("click", () => {
-    valorAnt = display.value;   
-    operador = "x";                  
-    display.value="";
-    historico.value= valorAnt + " " + operador + " ";
 });
-/*Seletor que armazena o tipo divisao quando tem click,
-armazenando valor anterior, o tipo do operador e limpando a tela
-*/
-document.querySelector("#div").addEventListener("click", () => {
-    valorAnt= display.value;
-    operador= "÷";
-    display.value="";
-    historico.value= valorAnt + " " + operador + " ";
-});
-/*Seletor que armazena o tipo subtracao quando tem click,
-armazenando valor anterior, o tipo do operador e limpando a tela
-*/
-document.querySelector("#sub").addEventListener("click", () => {
-    valorAnt= display.value;
-    operador= "-";
-    display.value="";
-    historico.value= valorAnt + " " + operador + " ";
-});
-/*Seletor que armazena o tipo soma quando tem click,
-armazenando valor anterior, o tipo do operador e limpando a tela
-*/
-document.querySelector("#mais").addEventListener("click", () => {
-    valorAnt= display.value;
-    operador= "+";
-    display.value="";
-    historico.value= valorAnt + " " + operador + " ";
-});
-/*Seletor que armazena o tipo porcentagem quando tem click,
-armazenando valor anterior, o tipo do operador e limpando a tela
-*/
-document.querySelector("#porcent").addEventListener("click", () => {
-    valorAnt= display.value;
-    operador= "%";
-    display.value="";
-    historico.value= valorAnt + " " + operador + " ";
-});
-
-function ponto(){
-    display.value=display.value + ".";
-}
-
-function inverteSinal(){    
-    if(display.value===""){ display.value="-"}
-    if(display.value>0){
-        display.value="-" + display.value;
+// Ponto para calculos com valores racionais como 2.5+ 3.7
+document.querySelector("#ponto").addEventListener("click", () => {
+    if (!display.value.includes(".")) {
+        display.value += ".";
     }
-}
-/*Seletor da operacao resultado, quando possui click identifica o operador
-selecionado e devolve o valor na tela da calculadora
-*/
-document.querySelector("#result").addEventListener("click", () => {
+});
+// Inverter sinal
+document.querySelector("#sinal").addEventListener("click", () => {
+    if (display.value.startsWith("-")) {
+        display.value = display.value.slice(1);
+    } else if (display.value !== "") {
+        display.value = "-" + display.value;
+    }
+});
+// Função para calcular resultado
+function calcularResultado() {
+    if (valorAnt === "" || operador === "" || display.value === "") return;
     let valorAtual = display.value;
     let resultado;
-
-    if (operador === "x") {
-        resultado = Number(valorAnt) * Number(valorAtual);
-    } else if (operador === "+") {
-        resultado = Number(valorAnt) + Number(valorAtual);
-    } else if (operador === "-") {
-        resultado = Number(valorAnt) - Number(valorAtual);
-    } else if (operador === "÷") {
-        resultado = Number(valorAnt) / Number(valorAtual);
-    } else if (operador === "%") {
-        resultado = Number(valorAnt) /100 * Number(valorAtual);
-    }
-    historico.value = valorAnt + " " + operador + " " + valorAtual
+    let expressaoHist = valorAnt + " " + operador + " " + valorAtual;//armazena os valores para depois mostrar o historico
+    if (operador === "+") resultado = Number(valorAnt) + Number(valorAtual);
+    else if (operador === "-") resultado = Number(valorAnt) - Number(valorAtual);
+    else if (operador === "x") resultado = Number(valorAnt) * Number(valorAtual);
+    else if (operador === "÷") resultado = Number(valorAnt) / Number(valorAtual);
+    else if (operador === "%") resultado = Number(valorAnt) / 100 * Number(valorAtual);
+    historico.value = expressaoHist;
+     resultado = parseFloat(resultado.toFixed(2));
     display.value = resultado;
+    valorAnt = resultado;
+    operador = "";
+}
+// Funcao para definir operador e encadear calculos
+function setOperador(op) {
+    if (display.value !== "" && valorAnt !== "" && operador !== "") {
+        calcularResultado(); 
+    } else if (display.value !== "" && valorAnt === "") {
+        valorAnt = display.value;
+    }
+    operador = op;
+    historico.value = valorAnt + " " + operador;
+    display.value = "";
+}
+document.addEventListener("keydown", function(event) {
+    if (event.key >= 0 && 9) {
+        display.value += event.key; 
+    }
+    if(event.key === 'Backspace' ){
+        display.value = display.value.slice(0,-1);
+    }
+    if(event.key === 'Enter'){
+        calcularResultado();
+    }
+    
 });
 
+// Seletor de tipo de operacao que vai ser feita
+document.querySelector("#mais").addEventListener("click", () => setOperador("+"));
+document.querySelector("#sub").addEventListener("click", () => setOperador("-"));
+document.querySelector("#multi").addEventListener("click", () => setOperador("x"));
+document.querySelector("#div").addEventListener("click", () => setOperador("÷"));
+document.querySelector("#porcent").addEventListener("click", () => setOperador("%"));
+//Calcula e Mostra o resultado
+document.querySelector("#result").addEventListener("click", () => {
+    calcularResultado();
+});
