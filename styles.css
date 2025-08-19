@@ -12,7 +12,6 @@
     font-size: 15px;
     text-align: right;
 }
-
 .telaHistorico{
     display:grid;
     position:absolute;
@@ -31,7 +30,6 @@
     font-size: 20px;
     text-align: right;
 }
-
 .botoes{
     display: grid;
     position: absolute;
@@ -40,7 +38,6 @@
     left:25px;
     gap: 15px;
 }
-    
 button{
     cursor: pointer;
     width: 55px;
@@ -48,7 +45,6 @@ button{
     border-radius:20px;
     font-size: 25px;
 }
-
 /*muda a cor do "=" */
 .botoes button:nth-child(20) {
     background-color:azure;

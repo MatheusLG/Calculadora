@@ -1,6 +1,7 @@
 const historico = document.querySelector("#historico");
 let valorAnt = "";
 let operador = "";
+
 // Seletor de 0 a 9
 document.querySelector(".botoes").addEventListener("click", (event) => {
     const botao = event.target;
@@ -61,6 +62,7 @@ function setOperador(op) {
     historico.value = valorAnt + " " + operador;
     display.value = "";
 }
+//Leitor de eventos de teclas, assim quando numeros e simbolos de operacao forem pressionados aparecerao na tela
 document.addEventListener("keydown", function(event) {
     if (event.key >= 0 && 9) {
         display.value += event.key; 
@@ -89,7 +91,12 @@ document.querySelector("#sub").addEventListener("click", () => setOperador("-"))
 document.querySelector("#multi").addEventListener("click", () => setOperador("x"));
 document.querySelector("#div").addEventListener("click", () => setOperador("÷"));
 document.querySelector("#porcent").addEventListener("click", () => setOperador("%"));
-//Calcula e Mostra o resultado
 document.querySelector("#result").addEventListener("click", () => {
     calcularResultado();
+});
+// Seletor que faz com todos os botoes percam o foco depois de serem pressionados, assim nao comprometendo o enter
+document.querySelectorAll("button").forEach(botao => {
+    botao.addEventListener("click", () => {
+        botao.blur();
+    });
 });
