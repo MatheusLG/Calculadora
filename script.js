@@ -71,9 +71,18 @@ document.addEventListener("keydown", function(event) {
     if(event.key === 'Enter'){
         calcularResultado();
     }
-    
+     if (event.key === "+") setOperador("+");
+    if (event.key === "-") setOperador("-");
+    if (event.key === "x") setOperador("x");
+    if (event.key === "*") setOperador("x");
+    if (event.key === "/") setOperador("÷");
+    if (event.key === "%") setOperador("%");
+    if (event.key === ".") {
+        if (!display.value.includes(".")) {
+            display.value += ".";
+        }
+    }
 });
-
 // Seletor de tipo de operacao que vai ser feita
 document.querySelector("#mais").addEventListener("click", () => setOperador("+"));
 document.querySelector("#sub").addEventListener("click", () => setOperador("-"));
